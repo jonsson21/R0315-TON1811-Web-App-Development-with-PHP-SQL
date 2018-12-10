@@ -278,6 +278,7 @@ div.oma2{
 	<br>
 	<p class="kuvateksti">Nick, Map, Ase, Tapot, Linkki</p>
 	<?php	
+	//Tässä ha
 	if (isset($_POST['submit-search'])) {
 		$radioVal = $_POST['nick'];
 		if ($radioVal == 'nick1'){
@@ -353,9 +354,10 @@ div.oma2{
 			$ase = "";
 		}
 		$search = mysqli_real_escape_string($conn, $_POST['search']);
-		$sql = "SELECT * FROM tiedostot WHERE Nimi LIKE '%$search%' AND Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%'";
+		$sql = "SELECT * FROM tiedostot WHERE Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%' AND (Nimi LIKE '%$search%' OR Tapot LIKE '%$search%' OR Ase LIKE '%$search%')";
 		$result = mysqli_query($conn, $sql);
 		$queryResult = mysqli_num_rows($result);
+		$delete = "DELETE FROM tiedostot WHERE Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%' AND (Nimi LIKE '%$search%' OR Tapot LIKE '%$search%' OR Ase LIKE '%$search%')";
 		
 		echo "Tuloksia on ".$queryResult.". <br>";
 		
@@ -420,7 +422,7 @@ div.oma2{
 				}
 				
 				$url = $row['Nimi'];
-				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>";
+				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div> ";
 			}
 		} else{
 			echo "Ei tuloksia!";

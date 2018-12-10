@@ -322,7 +322,6 @@ div.oma2{
 			$sql ="SELECT * FROM tiedostot";
 			$result = mysqli_query($conn, $sql);
 			$queryResults = mysqli_num_rows($result);
-			//if ($queryResult > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {
 					if ($row['Pelaajat_Pelaaja_ID'] == 13){
 					$pelaaja = "PulliS,";
@@ -385,12 +384,12 @@ div.oma2{
 				$url = $row['Nimi'];
 				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>";
 			}
-			//} else{
-			//	echo "Ei tuloksia!";
-			//}
-	?>
-</div>
-	
+		?>
+	</div>
+ 
+    <a href="delete.php">Poista dataa, </a>
+	<a href="add.php">Lisää dataa, </a>
+	<a href="update.php">Päivitä dataa</a>
 
 	
 	</section>
