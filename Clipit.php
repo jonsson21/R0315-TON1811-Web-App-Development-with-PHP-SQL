@@ -1,9 +1,9 @@
 <?php
-	include 'header.php';
+	include 'header.php'; // yhdistetään tiedosto header.php
 ?>
 <!DOCTYPE html> 
 <html lang="en"> 
- <head> 
+ <head> <!--  -->
 	<meta charset="utf-8"> 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,21 +16,14 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<style>
+<style> <!-- käytetyt html muotoilut -->
 span{
 	margin-right: 5px;
-	color: black;
+	color: black; 
 }
 table{
 	margin-bottom: 2%;
 	text-shadow: 8px 6px #f4d402;
-}
-form.a{
-	margin-top: 2%;
-	border: 2px solid black;
-	padding: 2%;
-	box-shadow: 10px 10px #f4d402;
-	margin-right: 3%;
 }
 footer{
 	text-align: center;
@@ -253,17 +246,17 @@ div.oma2{
 <body> 
 <header>
 <div class="container">
-	<h1><center><div class="oma" style="color:#76CDC8;">Clip</div><div class="oma2" style="color:#FCB00C;">Gallery</div></center></h1> 
-	<a href="index.html"><center><img class="fixed-ratio-resize" src="kuvat/banner.jpg" alt="banner"></center></a>
+	<h1><center><div class="oma" style="color:#76CDC8;">Clip</div><div class="oma2" style="color:#FCB00C;">Gallery</div></center></h1> <!-- otsikko sivun yläreunassa -->
+	<a href="index.html"><center><img class="fixed-ratio-resize" src="kuvat/banner.jpg" alt="banner"></center></a> <!-- banneri sivun yläreunassa -->
 </div>
 </header>
-<nav class="navbar navbar-expand-md bg-light navbar-light">
-  <a class="navbar-brand">Menu</a>
+<nav class="navbar navbar-expand-md bg-light navbar-light"> 
+  <a class="navbar-brand">Menu</a> <!-- menu joka tulee esiin kun sivun koko näytöllä on alle 768px -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav"> <!-- normaali menu -->
       <li class="nav-item">
         <a class="nav-link" style="color:black;" href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
       </li>
@@ -275,16 +268,16 @@ div.oma2{
 </nav>
 <section>
 <h2>Clipit</h2>
-<form action="search.php" method="POST">
-	<input type="text" name="search" placeholder="Search">
-	<button type="submit" name="submit-search">Search</button>
-	<p>Nick:</p>
+<form action="search.php" method="POST"> <!-- kysely joka lähettää tiedot search.php tiedostoon -->
+	<input type="text" name="search" placeholder="Search">  <!-- hakukenttä jolla voi hakea tiedostoja -->
+	<button type="submit" name="submit-search">Search</button>  <!-- nappula jota painamalla haku tehdään -->
+	<p>Nick:</p> <!-- valitaan haluttu pelaaja radio buttonilla -->
 
 		<input type="radio" name="nick" value="nick1"> Jöööns MO
 		<input type="radio" name="nick" value="nick2"> PulliS
 		<input type="radio" name="nick" value="nick0"> Tyhjä<br>
 	
-	<p>Map:</p>
+	<p>Map:</p> <!-- valitaan haluttu kenttä radio buttonilla -->
 	
 		<input type="radio" name="map" value="map1"> Cache
 		<input type="radio" name="map" value="map2"> Dust 2
@@ -295,7 +288,7 @@ div.oma2{
 		<input type="radio" name="map" value="map7"> Train
 		<input type="radio" name="map" value="map0"> Tyhjä<br>
 
-	<p>Ase:</p>
+	<p>Ase:</p> <!-- valitaan haluttu ase radio buttonilla -->
 	
 		<input type="radio" name="ase" value="ase1"> AK-47
 		<input type="radio" name="ase" value="ase2"> AWP
@@ -304,7 +297,7 @@ div.oma2{
 		<input type="radio" name="ase" value="ase5"> USP
 		<input type="radio" name="ase" value="ase0"> Tyhjä<br>
 	
-	<p>Tapot:</p>
+	<p>Tapot:</p> <!-- valitaan haluttu tappojen määrä radio buttonilla -->
 
 		<input type="radio" name="tapot" value="tapot1"> 1
 		<input type="radio" name="tapot" value="tapot2"> 2
@@ -318,11 +311,11 @@ div.oma2{
 	<h1>Tulokset</h1>
 	<p class="kuvateksti">Nick, Map, Ase, Tapot, Linkki</p>
 	<div class="article-container">
-		<?php
+		<?php // tulostetaan alle tietokannassa olevan talukon "tiedostot" olevien rivien kentät: Pelaajat_Pelaaja_ID, Kartta_Kartta_ID, Tapot, Nimi
 			$sql ="SELECT * FROM tiedostot";
 			$result = mysqli_query($conn, $sql);
 			$queryResults = mysqli_num_rows($result);
-				while ($row = mysqli_fetch_assoc($result)) {
+				while ($row = mysqli_fetch_assoc($result)) { // muutetaan taulukossa olevat tiedot ymmärrettävään muotoon
 					if ($row['Pelaajat_Pelaaja_ID'] == 13){
 					$pelaaja = "PulliS,";
 				}
@@ -382,14 +375,14 @@ div.oma2{
 				}
 				
 				$url = $row['Nimi'];
-				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>";
+				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>"; // tulostetaan tiedot
 			}
 		?>
 	</div>
  
-    <a href="delete.php">Poista dataa, </a>
-	<a href="add.php">Lisää dataa, </a>
-	<a href="update.php">Päivitä dataa</a>
+    <a href="delete.php">Poista dataa, </a> <!-- linkki tietojen poistoon käytettävälle sivulle -->
+	<a href="add.php">Lisää dataa, </a> <!-- linkki tietojen lisäykseen käytettävälel sivulle -->
+	<a href="update.php">Päivitä dataa</a> <!-- linkki tietojen muokkaukseen käytettävälle sivulle -->
 
 	
 	</section>
