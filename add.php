@@ -15,12 +15,12 @@
 <button type="submit" name="submit-search2">Add</button> <!-- nappula joka lähettää tiedot -->
 </form>
 	<p>Tiedosto Numero: seuraava vapaana oleva. <br>Pelaaja ID: 12 = Jöööns Mo ja 13 = PulliS <br>Kartta ID: 12 = Cache, 13 = Dust2, 14 = Inferno, 15 = Mirage, 16 = Nuke, 17 = Overpass ja 18 = Train<br>Linkki: URL<br>Ase: Vapaa Teksti<br>Tapot: 11 = 1, 12 = 2, 13 = 3, 14 = 4 ja 15 = 5</p> <!-- Annetaan ohjeet tietojen täyttöä varten -->
-<?php // tulostetaan kaikki tietokannassa olevat tiedot
-	$sql ="SELECT * FROM tiedostot";
+<?php 
+	$sql ="SELECT * FROM tiedostot"; // haetaan kaikki tietokannassa olevat tiedot
 			$result = mysqli_query($conn, $sql);
 			$queryResults = mysqli_num_rows($result);
 				while ($row = mysqli_fetch_assoc($result)) {
-					if ($row['Pelaajat_Pelaaja_ID'] == 13){
+					if ($row['Pelaajat_Pelaaja_ID'] == 13){ // muunnetaan tiedot helpommin ymmärrettävään muotoon
 					$pelaaja = "PulliS,";
 				}
 				if ($row['Pelaajat_Pelaaja_ID'] == 12){
@@ -79,7 +79,7 @@
 				}
 				
 				$url = $row['Nimi'];
-				echo "<div><p>".$row['Tiedosto_ID'].", $pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>";
+				echo "<div><p>".$row['Tiedosto_ID'].", $pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>"; // tulostetaan tiedot sivulle
 			}
 	?>
 	</body>

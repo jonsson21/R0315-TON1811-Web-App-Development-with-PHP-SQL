@@ -1,28 +1,28 @@
 <?php
-	include 'header.php';
+	include 'header.php'; // Yhdistetään header.php tiedosto
 ?>
 <!DOCTYPE html> 
 <html>
 <body>
-<form action="update2.php" method="POST">
+<form action="update2.php" method="POST"> <!-- kysely joka lähettää tulokset update2.php tiedostoon -->
 	<p>Päivitettävän arvo</p>
-<input type="text" name="Tiedosto_ID5" placeholder="Tiedosto_ID">
+<input type="text" name="Tiedosto_ID5" placeholder="Tiedosto_ID"> <!-- kysytään päivitettävän rivin Tiedosto_ID kenttä jotta saadaan selvillä mitä riviä päivitetään -->
 	<p>Uudet arvot</p>
-<input type="text" name="Tiedosto_ID6" placeholder="Tiedosto_ID">
+<input type="text" name="Tiedosto_ID6" placeholder="Tiedosto_ID"> <!-- kysytään tiedot jotka sitten syötetään halutulle riville -->
 <input type="text" name="Pelaajat_Pelaaja_ID6" placeholder="Pelaaja_ID">
 <input type="text" name="Kartta_Kartta_ID6" placeholder="Kartta_ID">
 <input type="text" name="Kuvaus_Kuvaus_ID6" placeholder="Kuvaus_ID">
 <input type="text" name="Nimi6" placeholder="Linkki">
 <input type="text" name="Ase6"  placeholder="ase">
 <input type="text" name="Tapot6" placeholder="Tapot_ID">
-<button type="submit" name="submit-search6">Update</button>
+<button type="submit" name="submit-search6">Update</button> <!-- nappula joka lähettää tiedot -->
 </form>
-	<p>Tiedosto Numero: seuraava vapaana oleva. <br>Pelaaja ID: 12 = Jöööns Mo ja 13 = PulliS <br>Kartta ID: 12 = Cache, 13 = Dust2, 14 = Inferno, 15 = Mirage, 16 = Nuke, 17 = Overpass ja 18 = Train<br>Linkki: URL<br>Ase: Vapaa Teksti<br>Tapot: 11 = 1, 12 = 2, 13 = 3, 14 = 4 ja 15 = 5</p>
+	<p>Tiedosto Numero: seuraava vapaana oleva. <br>Pelaaja ID: 12 = Jöööns Mo ja 13 = PulliS <br>Kartta ID: 12 = Cache, 13 = Dust2, 14 = Inferno, 15 = Mirage, 16 = Nuke, 17 = Overpass ja 18 = Train<br>Linkki: URL<br>Ase: Vapaa Teksti<br>Tapot: 11 = 1, 12 = 2, 13 = 3, 14 = 4 ja 15 = 5</p> <!-- Annetaan ohjeet tietojen täyttöä varten -->
 	<?php
-	$sql ="SELECT * FROM tiedostot";
+	$sql ="SELECT * FROM tiedostot"; // haetaan kaikki tietokannassa olevat tiedot
 			$result = mysqli_query($conn, $sql);
 			$queryResults = mysqli_num_rows($result);
-				while ($row = mysqli_fetch_assoc($result)) {
+				while ($row = mysqli_fetch_assoc($result)) { // muunnetaan tiedot helpommin ymmärrettävään muotoon
 					if ($row['Pelaajat_Pelaaja_ID'] == 13){
 					$pelaaja = "PulliS,";
 				}
@@ -82,7 +82,7 @@
 				}
 				
 				$url = $row['Nimi'];
-				echo "<div><p>".$row['Tiedosto_ID'].", $pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>";
+				echo "<div><p>".$row['Tiedosto_ID'].", $pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div>"; // tulostetaan tiedot sivulle
 			}
 	?>
 </body>

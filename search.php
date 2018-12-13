@@ -1,5 +1,5 @@
 <?php
-	include 'header.php';
+	include 'header.php'; // yhdistetään tiedosto header.php
 ?>
 <!DOCTYPE html> 
 <html lang="en"> 
@@ -16,7 +16,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<style>
+<style> <!-- käytetyt html muotoilut -->
 span{
 	margin-right: 5px;
 	color: black;
@@ -253,17 +253,17 @@ div.oma2{
 <body> 
 <header>
 <div class="container">
-	<h1><center><div class="oma" style="color:#76CDC8;">Clip</div><div class="oma2" style="color:#FCB00C;">Gallery</div></center></h1> 
-	<a href="index.html"><center><img class="fixed-ratio-resize" src="kuvat/banner.jpg" alt="banner"></center></a>
+	<h1><center><div class="oma" style="color:#76CDC8;">Clip</div><div class="oma2" style="color:#FCB00C;">Gallery</div></center></h1> <!-- otsikko sivun yläreunassa -->
+	<a href="index.html"><center><img class="fixed-ratio-resize" src="kuvat/banner.jpg" alt="banner"></center></a> <!-- banneri sivun yläreunassa -->
 </div>
 </header>
 <nav class="navbar navbar-expand-md bg-light navbar-light">
-  <a class="navbar-brand">Menu</a>
+  <a class="navbar-brand">Menu</a> <!-- menu joka tulee esiin kun sivun koko näytöllä on alle 768px -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav"> <!-- normaali menu -->
       <li class="nav-item">
         <a class="nav-link" style="color:black;" href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
       </li>
@@ -279,7 +279,7 @@ div.oma2{
 	<p class="kuvateksti">Nick, Map, Ase, Tapot, Linkki</p>
 	<?php	
 	//Tässä ha
-	if (isset($_POST['submit-search'])) {
+	if (isset($_POST['submit-search'])) { // vastaanotetaan arvot radio -buttoneista ja asetetaan ne muuttujiin
 		$radioVal = $_POST['nick'];
 		if ($radioVal == 'nick1'){
 			$nick = "12";
@@ -353,16 +353,15 @@ div.oma2{
 		if ($radioVal4 == 'ase0'){
 			$ase = "";
 		}
-		$search = mysqli_real_escape_string($conn, $_POST['search']);
-		$sql = "SELECT * FROM tiedostot WHERE Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%' AND (Nimi LIKE '%$search%' OR Tapot LIKE '%$search%' OR Ase LIKE '%$search%')";
+		$search = mysqli_real_escape_string($conn, $_POST['search']); // vastaanotetaan teksti tekstikentästä ja asetetaan se muuttujaan
+		$sql = "SELECT * FROM tiedostot WHERE Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%' AND (Nimi LIKE '%$search%' OR Tapot LIKE '%$search%' OR Ase LIKE '%$search%')"; // haetaan tiedostot -tietokannasta rivit jotka sopivat tehtyyn hakuun
 		$result = mysqli_query($conn, $sql);
 		$queryResult = mysqli_num_rows($result);
-		$delete = "DELETE FROM tiedostot WHERE Pelaajat_Pelaaja_ID LIKE '%$nick%' AND Kartta_Kartta_ID LIKE '%$map%' AND Tapot LIKE '%$tapot%' AND Ase LIKE '%$ase%' AND (Nimi LIKE '%$search%' OR Tapot LIKE '%$search%' OR Ase LIKE '%$search%')";
 		
-		echo "Tuloksia on ".$queryResult.". <br>";
+		echo "Tuloksia on ".$queryResult.". <br>"; // tulostetaan teksti ja saatujen tulosten määrä
 		
 		if ($queryResult > 0) {
-			while ($row = mysqli_fetch_assoc($result)) {
+			while ($row = mysqli_fetch_assoc($result)) { // muunnetaan tiedot helpommin ymmärrettävään muotoon
 				if ($row['Pelaajat_Pelaaja_ID'] == 13){
 					$pelaaja = "PulliS,";
 				}
@@ -422,10 +421,10 @@ div.oma2{
 				}
 				
 				$url = $row['Nimi'];
-				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div> ";
+				echo "<div><p>$pelaaja $kartta $gun $murhat, <a href=$url>$url</a></p></div> "; // tulostetaan tiedot sivulle
 			}
 		} else{
-			echo "Ei tuloksia!";
+			echo "Ei tuloksia!"; // tulostetaan teksti jos ei löydy hakuun sopivia rivejä
 		}
 	}
 ?>
